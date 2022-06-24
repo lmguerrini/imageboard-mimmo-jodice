@@ -1,0 +1,170 @@
+/* ---------- Mobile-friendly ------------ */
+@media (max-width: 1000px) {
+    header {
+        display: block;
+    }
+
+    header > img {
+        max-height: 100vh;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    header > h1 {
+        margin-top: 30px;
+        padding: 0 90px 20px 90px;
+        text-align: center;
+    }
+
+    h2 {
+        padding-left: 13px;
+    }
+
+    #firstFormWrap {
+        text-decoration: bold;
+        padding: 0 0 10px 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 200px;
+    }
+
+    #secondFormWrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100px;
+        padding: 10px 0 10px 15px;
+    }
+
+    .cardContainer {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        justify-content: space-around;
+        grid-gap: 30px;
+    }
+    .card {
+        width: 80vw;
+        height: 80vw;
+    }
+    .card > a > p {
+        top: 25px;
+    }
+
+    /* --- modalComponentOverlay --- */
+    #modal-component {
+        width: 100vw;
+    }
+    #modal-component > div {
+        min-width: 550px;
+        height: 92vh;
+        min-height: 700px;
+        background-color: rgba(9, 9, 9, 0.384);
+        border: 3px solid rgba(255, 255, 255, 0.9);
+        display: flex;
+        flex-direction: column;
+        margin-top: 2vh;
+    }
+
+    .modalImageContainer {
+        border: 1px solid white;
+        border-bottom: hidden;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        width: 100%;
+        max-height: 50vh;
+        min-height: 300px;
+        background-color: rgba(255, 0, 0, 0);
+    }
+
+    .modalImage {
+        border-top-right-radius: 10px;
+        align-content: center;
+        object-fit: scale-down;
+    }
+
+    .modalImageDeatailsContainer {
+        width: 80%;
+        justify-content: space-around;
+        padding: 0;
+        margin-top: 0;
+    }
+
+    .modalImageDeatailsContainer > h1 {
+        margin: 0;
+        align-self: center;
+    }
+
+    .modalImageDeatailsContainer > p {
+        align-self: center;
+        padding: 0 20px;
+        margin-top: 0;
+    }
+
+    .modalImageDeatailsContainer > span {
+        align-self: center;
+        padding: 0 30px;
+        margin-top: 0;
+        font-size: 0.8em;
+    }
+
+    .closeModal {
+        bottom: 1vh;
+    }
+
+    /* --- commentComponent --- */
+    .comment-component {
+        margin-top: 20px;
+        transform: scale(1);
+    }
+
+    #addCommentContainer {
+        margin-top: 10px;
+    }
+
+    #commentsUsernameContainer {
+        margin: 30px 50px;
+    }
+
+    .modalImageDeatailsContainer > h2 {
+        left: 45%;
+    }
+
+    .comment-component-big {
+        top: 1.5vh;
+        transform: scale(1);
+        width: 70%;
+        height: 93%;
+        border-radius: 10px;
+        padding: 0 55px;
+        border: 1px solid white;
+    }
+    .addCommentContainer-big {
+        margin-top: 50px;
+    }
+    .hideComments {
+        font-size: 1em;
+    }
+    .hideComments small {
+        text-align: center;
+        right: 50%;
+        margin-top: 2.5vh;
+    }
+    .deleteImage::after {
+        font-size: 0.9em;
+        opacity: 0.7;
+        content: "Delete image";
+    }
+    #addCommentErrorContainer > span {
+        background-color: rgba(0, 0, 0, 0.6);
+        margin-top: 250px;
+        padding: 50px 25px 80px 25px;
+    }
+    #addCommentErrorContainer > button {
+        transform: translateY(-50px);
+        margin-bottom: 625px;
+    }
+}

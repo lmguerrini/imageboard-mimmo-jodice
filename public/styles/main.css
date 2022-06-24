@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+}
+
+body {
+    /* background-color: rgb(34, 34, 34); */
+    overflow-x: hidden;
+}
+
+/* ------------ header ------------ */
+header {
+    /* background-color: rgb(28, 28, 28); */
+    background-color: black;
+    display: flex;
+}
+header > img {
+    max-height: 500px;
+}
+
+h1 {
+    align-self: center;
+    padding: 5px 30px 5px 120px;
+    color: white;
+    -font-family: Copperplate;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 10px;
+    font-size: 2em;
+}
+
+/* ------- < Main > --------- */
+section {
+    background-color: white;
+}
+
+h2 {
+    padding: 20px 0 30px 10px;
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    font-size: 1.05em;
+}
+
+#firstFormWrap {
+    padding: 10px 0 20px 0;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+#firstFormWrap > input {
+    width: 200px;
+    height: 20px;
+    outline: none;
+    font-size: 1.2em;
+    color: gray;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    -background-color: rgba(19, 19, 19, 0.213);
+}
+
+#firstFormWrap > input:hover {
+    border-radius: 8px;
+    border-bottom-style: hidden;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+#firstFormWrap > label {
+    visibility: hidden;
+}
+
+#secondFormWrap {
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    height: 25px;
+    padding: 10px 0 0 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#secondFormWrap > label,
+input {
+    padding: 0 25px 0 25px;
+}
+
+#thirdFormWrap {
+    display: flex;
+    justify-content: center;
+}
+
+#thirdFormWrap > button {
+    font-size: 1em;
+    font-family: "Roboto", sans-serif;
+    margin-top: 20px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    letter-spacing: 1.5px;
+    padding: 2.5px 25px 2.5px 25px;
+}
+
+#imageInput {
+    font-family: "Roboto", sans-serif;
+    font-size: 1em;
+    border-bottom-style: hidden;
+}
+
+.cardContainer {
+    margin: 50px 0;
+    display: flex;
+    flex-flow: row wrap;
+    width: 100vw;
+    gap: 20px 40px;
+    justify-content: center;
+}
+
+.card {
+    width: 30vw;
+    height: 30vw;
+    min-width: 500px;
+    min-height: 500px;
+    position: relative;
+    background-color: #000000d5;
+    color: whitesmoke;
+    border-radius: 5px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.cardImg {
+    width: 100%;
+    height: 90%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    object-fit: cover;
+}
+
+.card:hover {
+    opacity: 0.5;
+}
+
+.card > a {
+    text-decoration: none;
+}
+
+.card > a > p {
+    text-decoration: none;
+    color: white;
+    position: relative;
+    top: 1vh;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 3px;
+    font-size: 1.2em;
+}
+.showMoreButtonContainer {
+    display: flex;
+    justify-content: center;
+}
+.showMoreButton {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    font-family: "Roboto", sans-serif;
+    font-size: 1em;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 3.5px 0 3px 0;
+    letter-spacing: 3px;
+}
+
+button:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}

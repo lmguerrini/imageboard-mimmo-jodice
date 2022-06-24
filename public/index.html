@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/styles/main.css" />
+        <link rel="stylesheet" href="/styles/components/modal-component.css" />
+        <link rel="stylesheet" href="/styles/components/comment-component.css" />
+        <link rel="stylesheet" href="/styles/media-query.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
+            rel="stylesheet"
+        />
+        <title>Imageboard Project</title>
+    </head>
+    <body>
+        <header>
+            <img src="/img/MimmoJodicePortrait.jpg" />
+            <h1>The metaphysical photography of Mimmo Jodice_</h1>
+        </header>
+
+        <main>
+            <section>
+                <div>
+                    <h2>ADD AN IMAGE:</h2>
+                </div>
+                <!-- Main element -->
+                <div id="main">
+                    <div>
+                        <form method="POST" action="/upload" enctype="multipart/form-data">
+                            <div id="firstFormWrap">
+                                <!-- v-model directive to automatically collect the values that the user enters -->
+                                <label for="title">Title:</label>
+                                <input
+                                    name="title"
+                                    type="text"
+                                    v-model="title"
+                                    placeholder="Title.."
+                                />
+                                <label for="description">Description:</label>
+                                <input
+                                    name="description"
+                                    type="text"
+                                    v-model="description"
+                                    placeholder="Description.."
+                                />
+                                <label for="username">Username:</label>
+                                <input
+                                    name="username"
+                                    type="text"
+                                    v-model="username"
+                                    placeholder="Username.."
+                                />
+                            </div>
+
+                            <div id="secondFormWrap">
+                                <label id="labelImage" for="image">Choose an image (<2mb):</label>
+                                <!-- "accept" disallow files that are not images -->
+                                <input
+                                    id="imageInput"
+                                    name="image"
+                                    type="file"
+                                    accept="image/*"
+                                    v-on:change="handleFileChange"
+                                />
+                            </div>
+
+                            <div id="thirdFormWrap">
+                                <button @click="handleupload">Upload</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="cardContainer">
+                        <div class="card" v-for="image in images" :key="image.id">
+                            <!-- <img
+                                class="cardImg"
+                                v-bind:src="image.url"
+                                @click="getImageId(image.id)"
+                            />
+                            <p>{{image.title}}</p> -->
+                            <a :href="'#' + image.id">
+                                <img class="cardImg" v-bind:src="image.url" :alt="image.title" />
+                                <p>{{image.title}}</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="showMoreButtonContainer">
+                        <button class="showMoreButton" v-if="showMorePic" @click="showMore">
+                            More
+                        </button>
+                        <button class="showMoreButton" v-else @click="backToTop">Back</button>
+                    </div>
+
+                    <!-- modal-component (inside Main) -->
+                    <modal-component v-if="imageId" :image-id="imageId" @close="closeMe">
+                    </modal-component>
+                </div>
+                <!-- end Main element -->
+            </section>
+        </main>
+
+        <!-- Modal-component -->
+        <script id="modal-template" type="text/x-template">
+            <div id="modal-component"> <!-- modal @click="closeModal"-->
+                <span class="closeModal" @click="closeModal">⟩</span>
+                <span class="prevNextModal" @click="prevModal">⟨</span>
+                <div>
+                    <div class="modalImageContainer">
+                        <img class="modalImage" v-bind:src="modalImage.url">
+                    </div>
+                    <div class="modalImageDeatailsContainer">
+                        <h1>{{modalImage.title}}</h1>
+                        <p><b>Description:</b></br></br>{{modalImage.description}}</br></br></br></p>
+                        <span><b>Uploaded by {{modalImage.username}}</b> on {{modalImage.created_at.substring(0, 10)}}&nbsp; at {{modalImage.created_at.substring(11, 19)}}</span>
+                        <!-- comment-component -->
+                        <comment-component class="comments" :image-id="imageId"></comment-component>
+                    </div>
+                </div>
+                <span class="prevNextModal" @click="nextModal">⟩</span>
+                <div v-if="addCommentError" id="addCommentErrorContainer">
+                    <span>Ops..</br> It seems you left the comment field empty.</br> Please write something in it before to add a comment.</span>
+                    <button class="addCommentButton" @click="closeError">Got it!</button>
+                </div>
+            </div>
+        </script>
+
+        <!-- Comment-component -->
+        <script id="comment-template" type="text/x-template">
+            <div :class="!showComments? 'comment-component' : 'comment-component-big'">
+                    <div :class="!showComments? 'addCommentContainer' : 'addCommentContainer-big'">
+                        <h2 @click="showComments = !showComments" v-if="comments.length > 0 && showComments" class="addComment hideComments"><small>⟩</small>&nbsp; <b>Hide comments</b> &nbsp;<small>⟨</small></h2>
+                        <input id="commentUsernameInput" name="comment" type="text" v-model="comment" v-on:keyup.enter="addComment" placeholder="*Add a comment.."></br>
+                        <input id="commentUsernameInput" name="username" type="text" v-model="username" v-on:keyup.enter="addComment" placeholder="Add a username.."></br>
+                        <button class="addCommentButton" @click="addComment">Add Comment</button></br></br>
+                        <h2 @click="sendDataToSibling" v-if="comments.length > 0 && !showComments" class="addComment showComments"><small>⟨</small> Show all comments ({{comments.length}}) <small>⟩</small></h2>
+                        <h2 :class="!comments.length > 0? 'deleteImage' : 'deleteImage deleteImageAndComments'" @click="deleteImage(imageId)"></h2>
+                    </div>
+                    <div id="commentsUsernameContainer" v-if="showComments" v-for="comment in comments" :key="comment.id">
+                        <h2>"{{comment.comment}}"</h2></br>
+                        <span v-if="comment.username">By <b>{{comment.username}}</b> on {{comment.created_at.substring(0, 10)}}&nbsp; at {{comment.created_at.substring(11, 19)}}</span>
+                        <span v-else>Written on {{comment.created_at.substring(0, 10)}}&nbsp; at {{comment.created_at.substring(11, 19)}}</span></br></br>
+                        <button  class="addCommentButton deleteCommentButton" @click="deleteComment(comment.id)">Delete</button>
+                    </div>
+                </div>
+        </script>
+
+        <script src="/js/vue.js"></script>
+        <script src="/js/axios.min.js"></script>
+        <!-- client js codes: -->
+        <script src="/js/main.js"></script>
+        <script src="/js/components/modal-component.js"></script>
+        <script src="/js/components/comment-component.js"></script>
+    </body>
+</html>

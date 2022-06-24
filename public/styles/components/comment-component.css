@@ -1,0 +1,157 @@
+/* ------------- commentComponent ------------ */
+.comment-component {
+    width: 25%;
+    width: 300px;
+    max-height: 400px;
+    transform: scale(0.85);
+    overflow-y: auto;
+}
+.comment-component-big {
+    transform: scale(0.9);
+    background-color: #070707;
+    position: absolute;
+    width: 280px;
+    padding: 0 2%;
+    height: 80%;
+    overflow-y: auto;
+}
+
+.addCommentContainer-big {
+    margin-top: 25px;
+}
+
+.addCommentContainer > h2 {
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 2px;
+}
+
+#commentUsernameLabel {
+    font-size: 1.2em;
+    padding: 0 25px 0 25px;
+}
+
+#commentUsernameInput {
+    background-color: black;
+    color: white;
+    font-size: 1em;
+    font-family: "Roboto", sans-serif;
+    border-color: rgba(255, 255, 255, 0.623);
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#commentUsernameInput:focus {
+    outline: none;
+}
+
+.comments {
+    color: white;
+}
+
+#commentsUsernameContainer {
+    color: white;
+    /* background-color: rgb(44, 44, 44); */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+#commentsUsernameContainer > h2,
+span {
+    padding: 10px 25px 0 25px;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 2px;
+    font-size: 0.95em;
+}
+#commentsUsernameContainer > h2 {
+    font-size: 1em;
+}
+#commentsUsernameContainer > span {
+    margin-bottom: 30px;
+}
+
+.addComment {
+    text-decoration: none;
+    text-align: center;
+    height: 40px;
+    margin-right: 25px;
+}
+.addComment:hover {
+    transition: 0.5s;
+    cursor: pointer;
+    color: rgb(165, 165, 165);
+}
+.addComment small {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.showComments {
+    transform: translateY(30px);
+    opacity: 0.9;
+    font-size: 0.9em;
+}
+.hideComments {
+    opacity: 0.9;
+    font-size: 0.9em;
+    transform: translateX(5px);
+}
+.showComments small,
+.hideComments small {
+    visibility: hidden;
+    font-weight: lighter;
+}
+.showComments:hover small,
+.hideComments:hover small {
+    visibility: visible;
+}
+
+.addCommentButton {
+    background-color: black;
+    color: white;
+    -margin: 20px 0 10px 35%;
+    font-size: 1em;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+}
+
+.deleteImage {
+    height: 20px;
+}
+.deleteImage::after {
+    font-size: 1.1em;
+    opacity: 0.7;
+    content: "✗";
+}
+.deleteImage:hover::after {
+    font-size: 0.85em;
+    content: "Delete image";
+    color: rgba(255, 0, 0, 0.774);
+    cursor: pointer;
+    transform: translateY(50px);
+    white-space: pre;
+}
+.deleteImageAndComments:hover::after {
+    content: "Delete image \a& comments";
+}
+
+#addCommentErrorContainer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 500px;
+    height: 100px;
+    text-align: center;
+}
+#addCommentErrorContainer > span {
+    margin-top: 325px;
+}
+#addCommentErrorContainer > button {
+    margin-bottom: 325px;
+    font-size: small;
+}
